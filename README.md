@@ -1,29 +1,27 @@
 # Mon Awesome SDK
 
-SDK JavaScript pour interagir avec l'API Mon Service.
+SDK JavaScript pour interagir avec l'API NxAuth.
 
 ## Installation
 
 ```bash
-npm install mon-awesome-sdk
+npm install sdk_js_auth
 ```
 
 ## Utilisation rapide
 
 ```javascript
-import MonSDK from 'mon-awesome-sdk';
+import NxAuthClient from 'sdk_js_auth';
 
-const sdk = new MonSDK({
-  apiKey: 'votre-api-key'
-});
+const sdk = new NxAuthClient('api_key');
 
-// Récupérer un utilisateur
-const user = await sdk.getUser('123');
+// Connecter un utilisateur
+const user = await login({});
 
 // Créer un utilisateur
-const newUser = await sdk.createUser({
-  name: 'Jean Dupont',
+const newUser = await NxAuthClient.register({
   email: 'jean@example.com'
+  password: "supersecret"
 });
 ```
 
@@ -32,27 +30,16 @@ const newUser = await sdk.createUser({
 ### Configuration
 
 - `apiKey` (string, requis): Votre clé API
-- `baseURL` (string, optionnel): URL de base de l'API
-- `timeout` (number, optionnel): Timeout en millisecondes
 
 ### Méthodes
 
-#### `getUser(id: string): Promise<User>`
-Récupère un utilisateur par son ID.
+#### `login(params)`
+Permet de connecter votre utilisateur et retourne les information sur cette utilisateur
 
-#### `createUser(userData: CreateUserData): Promise<User>`
+#### `register(params)`
 Crée un nouvel utilisateur.
 
-#### `updateUser(id: string, userData: Partial<CreateUserData>): Promise<User>`
-Met à jour un utilisateur existant.
-
-#### `deleteUser(id: string): Promise<void>`
-Supprime un utilisateur.
-
-#### `listUsers(options?: ListOptions): Promise<UserList>`
-Récupère la liste des utilisateurs avec pagination.
-
-## Gestion d'erreurs
+<!-- ## Gestion d'erreurs
 
 ```javascript
 try {
@@ -63,7 +50,7 @@ try {
     console.log('Status:', error.status);
   }
 }
-```
+``` -->
 
 ## Tests
 

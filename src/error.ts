@@ -1,2 +1,4 @@
-export class SDKError extends Error {  }
-export class ValidationError extends Error {  }
+export class NxAuthError extends Error {
+    
+}
+export class ValidationError extends Error {}
