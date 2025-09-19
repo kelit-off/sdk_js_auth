@@ -5,13 +5,13 @@ SDK JavaScript pour interagir avec l'API NxAuth.
 ## Installation
 
 ```bash
-npm install sdk_js_auth
+npm install nxauth
 ```
 
 ## Utilisation rapide
 
 ```javascript
-import NxAuthClient from 'sdk_js_auth';
+import NxAuthClient from 'nxauth';
 
 const sdk = new NxAuthClient('api_key');
 
