@@ -1,35 +1,37 @@
-import { AuthResponse, NxAuthError } from "./type";
+import { AuthResponse} from "./type";
+import api from "./api"; // ton axios instance
+import { NxAuthError } from "./error";
 
 export async function request(
     url: string,
-    method: string = "GET",
+    method: "GET" | "POST" = "GET",
     apiKey: string,
     body?: Record<string, any>
 ): Promise<AuthResponse> {
-    let fetchUrl = "http://api.nxauth.fr" + url;
-    let fetchOptions: RequestInit = {
-        method,
-        headers: {
-            "Content-Type": `application/json`,
+    try {
+        const headers = {
             Authorization: `Bearer ${apiKey}`,
-        },
-    };
+        };
 
-    if (method === "POST") {
-        fetchOptions.body = JSON.stringify(body); // <-- envoie JSON
-    }
+        let response;
 
-    if (method === "GET" && body) {
-        const params = new URLSearchParams();
-        for (const key in body) {
-            if (body[key] !== undefined) {
-                params.append(key, String(body[key]));
-            }
+        if (method === "GET") {
+            response = await api().get(url, {
+                headers,
+                params: body, // axios gère automatiquement la query string
+            });
+        } else if (method === "POST") {
+            response = await api().post(url, body, {
+                headers,
+            });
+        } else {
+            throw new NxAuthError(`Méthode HTTP non supportée: ${method}`);
         }
-        fetchUrl += `?${params.toString()}`;
-    }
 
-    const res = await fetch(fetchUrl, fetchOptions);
-    
-    return res.json();
+        return response.data as AuthResponse;
+    } catch (err: any) {
+        // Tu peux customiser l'erreur selon ta structure NxAuthError
+        throw new NxAuthError(err.response?.data?.message || err.message);
+    }
 }
+

@@ -1,11 +1,13 @@
 {
     "name": "nxauth",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "SDK pour interagir avec l'API NxAuth",
     "main": "dist/index.js",
     "module": "dist/index.esm.js",
     "types": "dist/index.d.ts",
-    "files": ["dist"],
+    "files": [
+        "dist"
+    ],
     "scripts": {
         "build": "rollup -c",
         "test": "jest",
@@ -24,13 +26,13 @@
         "url": "https://github.com/kelit-off/sdk_js_auth"
     },
     "dependencies": {
-        "axios": "^1.6.0"
+        "axios": "^1.12.2"
     },
     "devDependencies": {
         "@types/node": "^20.0.0",
         "jest": "^29.0.0",
         "rollup": "^4.0.0",
         "typedoc": "^0.25.0",
-        "typescript": "^5.9.2"
+        "typescript": "5.4"
     }
 }
