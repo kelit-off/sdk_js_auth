@@ -6,7 +6,7 @@ export async function request(
     apiKey: string,
     body?: Record<string, any>
 ): Promise<AuthResponse> {
-    let fetchUrl = "http://127.0.0.1:3000" + url;
+    let fetchUrl = "http://api.nxauth.fr" + url;
     let fetchOptions: RequestInit = {
         method,
         headers: {

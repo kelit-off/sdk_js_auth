@@ -1,5 +1,5 @@
 {
-    "name": "sdk_js_nxauth",
+    "name": "nxauth",
     "version": "1.0.0",
     "description": "SDK pour interagir avec l'API NxAuth",
     "main": "dist/index.js",
