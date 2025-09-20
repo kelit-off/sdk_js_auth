@@ -1,6 +1,6 @@
 import { AuthResponse} from "./type";
-import api from "./api"; // ton axios instance
 import { NxAuthError } from "./error";
+import { api } from "./lib/api";
 
 export async function request(
     url: string,
